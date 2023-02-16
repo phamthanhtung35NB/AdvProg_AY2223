@@ -8,7 +8,6 @@ using namespace std;
 
 /***
     Args:
-        
     Returns:
         number (int) : random number in range 1-100
 ***/
