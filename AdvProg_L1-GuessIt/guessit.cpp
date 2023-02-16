@@ -14,17 +14,10 @@ using namespace std;
 int generateRandomNumber() {
     int n;
     for (int i = 0; i < 5; i++)
-        n=rand() % 100;
+        n=rand()%100;
     return n;
 }
 
-
-/***
-    Args:
-        
-    Returns:
-        number (int) : the number that player guessed
-***/
 int getPlayerGuess() {
     int n;
     cin>>n;
