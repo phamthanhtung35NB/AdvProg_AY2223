@@ -114,18 +114,27 @@ char getInputCharacter() {
     Returns:
         void
 ***/
-void updateSecretWord(string& secretWord, const char ch, const string& word)
-{
-    for (int i = 0; i < word.size(); i++)
-    {
-        if (word[i]==ch)
-        {
-            secretWord[i]=ch;
-        }
+void updateSecretWord(string& secretWord, const char ch, const string& word) {  
+  for (size_t i = 0; i < word.length(); ++i) { 
+    if (word[i] == ch) { 
+      secretWord[i] = ch; 
+    } 
+  }
+} 
+
+// void updateSecretWord(string& secretWord, const char ch, const string& word)
+// {
+//     for (int i = 0; i < word.size(); i++)
+//     {
+//         if (word[i]==ch)
+//         {
+//             Word[i]=ch;
+//         }
         
-    }
+    // }
     
     // TODO:Cập nhật từ bí mật nếu ký tự ch trong từ trả lời.
+     //Update the secret word if the character ch is in the answer word.
 }
 
 /***
