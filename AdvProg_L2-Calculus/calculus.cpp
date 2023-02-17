@@ -13,10 +13,10 @@ double myCos(double x);
 double mySqrt(double x);
 
 /***
-    Args:
-        x (double): a number
-    Returns:
-        double: cosine of x
+Args:
+        x (gấp đôi): một số
+    Trả lại:
+        Double: cosin của x
 ***/
 double myCos(double x) 
 {
