@@ -13,8 +13,8 @@ using namespace std;
 ***/
 int generateRandomNumber() {
     int n;
-    for (int i = 0; i < 5; i++)
-        n=rand()%100;
+    srand(time(NULL));
+    n=rand()%100;
     return n;
 }
 
@@ -25,30 +25,23 @@ int getPlayerGuess() {
 }
 
 
-/***
-    Args:
-        number (int): answer number from player
-        randomNumber (int): the true number
-    Returns:
-        answer (string) : answer of computer after checking result
-***/
 string getAnswer(int number, int randomNumber) {
     string answer;
     if (number==randomNumber)
     {
-        cout<<"Congratulation! You win.";
+        //cout<<"Congratulation! You win.";
         answer="Congratulation! You win.";
     }
     else if (number>randomNumber)
     {
-        cout<<"Your number is higher.";
+        //cout<<"Your number is higher.";
         answer="Your number is higher.";
     }
     else if (number<randomNumber)
     {
         answer="Your number is lower.";
     }
-    string answer;
+
 
     return answer;
 }
@@ -119,4 +112,48 @@ int run() {
         isContinued = getPlayerOpinion();
     } while (checkContinuePlaying(isContinued));
     return 0;
+}
+
+
+
+
+
+/***
+    Args:
+        answer (string): answer from computer after compare numbers
+    Returns:
+        result (bool) : player win or not
+***/
+bool checkSuccess(string answer) {
+    // TODO: return the result after checking that player guessed right or wrong
+    
+    return true;
+}
+
+
+/***
+    Args:
+        isContinued (char): player's choice
+    Returns:
+        result (bool) : continue playing or not
+***/
+bool checkContinuePlaying(char isContinued) {
+    // TODO: return result after checking player continue playing or not
+    bool result = false;
+
+    return result;
+}
+
+
+/***
+    Args:
+        
+    Returns:
+        isContinues (char) : player's choice (continue playing or not)
+***/
+char getPlayerOpinion() {
+    // TODO: Ask the player about continue playing and return the player's choice
+    char isContinued;
+
+    return isContinued;
 }
