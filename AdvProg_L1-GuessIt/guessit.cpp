@@ -116,14 +116,14 @@ int run() {
 
 
 
-
+/****
 
 /***
     Args:
         answer (string): answer from computer after compare numbers
     Returns:
         result (bool) : player win or not
-***/
+
 bool checkSuccess(string answer) {
     // TODO: return the result after checking that player guessed right or wrong
     
@@ -136,7 +136,7 @@ bool checkSuccess(string answer) {
         isContinued (char): player's choice
     Returns:
         result (bool) : continue playing or not
-***/
+
 bool checkContinuePlaying(char isContinued) {
     // TODO: return result after checking player continue playing or not
     bool result = false;
@@ -150,10 +150,11 @@ bool checkContinuePlaying(char isContinued) {
         
     Returns:
         isContinues (char) : player's choice (continue playing or not)
-***/
+
 char getPlayerOpinion() {
     // TODO: Ask the player about continue playing and return the player's choice
     char isContinued;
 
     return isContinued;
 }
+****/
