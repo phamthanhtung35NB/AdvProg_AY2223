@@ -79,12 +79,11 @@ bool isCharInWord(const char ch, const string& word)
 ***/
 string chooseWordFromList(const vector<string>& wordList, int index) 
 {
-    //TODO: Trả về một từ viết thường ở vị trí chỉ mục của danh sách từ vector.
-    string answer;
-    
-
+    string answer = wordList[index];
+    transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
     return answer;
 }
+
 
 /***
     Args:
