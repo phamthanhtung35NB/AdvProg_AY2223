@@ -121,7 +121,7 @@ void updateSecretWord(string& secretWord, const char ch, const string& word)
     {
         if (word[i]==ch)
         {
-            word[i]=ch;
+            secretWord[i]=ch;
         }
         
     }
@@ -168,7 +168,7 @@ void processData(const char ch, const string& word,
                 string& correctChars, 
                 int& incorrectGuess, string& incorrectChars)
 {
-    if (ch in word)
+    if (word.find(ch) != string::npos)
     {
         updateSecretWord(secretWord,ch,word);
         updateEnteredChars(ch,correctChars);
