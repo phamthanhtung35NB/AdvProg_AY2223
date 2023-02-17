@@ -182,8 +182,7 @@ void processData(const char ch, const string& word,
         
     }
         
-    }    
-    
+    }        
     /*** TODO
         If ch in word:
             update secretWord: call updateSecretWord() function
@@ -192,5 +191,5 @@ void processData(const char ch, const string& word,
             update incorrectGuess: call updateIncorrectGuess() function
             update incorrectChars: call updateEnteredChars() function
     ***/
-}
+
 
