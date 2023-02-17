@@ -167,17 +167,22 @@ void processData(const char ch, const string& word,
                 string& correctChars, 
                 int& incorrectGuess, string& incorrectChars)
 {
-    if (word.find(ch) != string::npos)
+    for (int i = 0; i < word.size(); i++)
     {
-        updateSecretWord(secretWord,ch,word);
-        updateEnteredChars(ch,correctChars);
+        if (word[i]==ch)
+        {
+            updateSecretWord(secretWord,ch,word);
+            updateEnteredChars(ch,correctChars);
+        }
+        else
+        {
+            updateIncorrectGuess(incorrectGuess);
+            updateEnteredChars(ch,correctChars);
+        }
+        
     }
-    else
-    {
-        updateIncorrectGuess(incorrectGuess);
-        updateEnteredChars(ch,correctChars);
-    }
-    
+        
+    }    
     
     /*** TODO
         If ch in word:
