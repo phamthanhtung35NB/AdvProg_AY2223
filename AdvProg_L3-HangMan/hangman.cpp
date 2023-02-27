@@ -179,7 +179,8 @@ void processData(const char ch, const string& word,
 {
     for (int i = 0; i < word.size(); i++)
     {
-        if (word[i]==ch)
+        //if (word[i]==ch)
+        if(isCharInWord(ch,word))
         {
             updateSecretWord(secretWord,ch,word);
             updateEnteredChars(ch,correctChars);
@@ -187,7 +188,7 @@ void processData(const char ch, const string& word,
         else
         {
             updateIncorrectGuess(incorrectGuess);
-            updateEnteredChars(ch,correctChars);
+            updateEnteredChars(ch,incorrectChars);
         }
         
     }
