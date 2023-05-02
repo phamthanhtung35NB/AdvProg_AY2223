@@ -1,5 +1,6 @@
 #include <iostream>
 #include "hangman.h"
+
 using std::string;
 using std::vector;
 using std::ifstream;
@@ -8,18 +9,16 @@ using std::cin;
 
 /***
     Args:
-        min (int): lề trái của một phạm vi
-        max (int): biênĐộBênPhảiCủaMộtPhạmVi
+        min (int): left margin of a range
+        max (int): right margin of a range
     Returns:
-        number (int) : số ngẫu nhiên trong phạm vi [tối thiểu;Tối đa]
+        number (int) : random number in range [min; max]
 ***/
 int generateRandomNumber(const int min, const int max)
 {
-    // TODO: 
-    int n;
-    srand(time(NULL));
-    n=rand()%(max-min+1)+min;
-    return n;
+    // TODO: Return a random integer number between min and max
+    int ans = rand() %( max - min + 1 ) + min;
+    return ans;
 }
 
 vector<string> readWordListFromFile(const string& filePath)
@@ -45,45 +44,37 @@ vector<string> readWordListFromFile(const string& filePath)
 
 /***
     Args:
-        ch (char): Một nhân vật
-        word (string): một từ
+        ch (char): A character
+        word (string): a word
     Returns:
-        result (bool) : Nhân vật Ch có trong từ hay không.
+        result (bool) : the character ch is in the word or not.
 ***/
 bool isCharInWord(const char ch, const string& word)
 {
-    // TODO: trả về true nếu ch ở trong từ khác trả về false
-    int i=0;
-    while (word[i]!='\0')
-    {
-        i++;
+    // TODO: return true if ch is in word else return false
+    for( int i=0 ; i<word.size() ; i++){
+        if( word[i] == ch ) return true;
     }
-    for (int j = 0; j < i; j++)
-    {
-        if (ch==word[j])
-        {
-            return true;
-        }
-        
-    }
-    
     return false;
 }
 
 /***
     Args:
-        wordList (vector<string>):Một danh sách các từ
-        index (int): một số nguyên
+        wordList (vector<string>): A list of words
+        index (int): an integer number
     Returns:
-        answer (string) :từ viết thường nằm trong chỉ số vị trí của danh sách từ
+        answer (string) : the lowercase word is in the position index of wordList
 ***/
 string chooseWordFromList(const vector<string>& wordList, int index) 
 {
-    string answer = wordList[index];
-    transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+    // TODO: Return a lowercase word in the index position of the vector wordList.
+    string answer;
+    answer = wordList[index];
+    for( int i=0 ; i<answer.size() ; i++){
+        if( answer[i]>='A' && answer[i]<='Z' ) answer[i]+='a'-'A';   
+    }
     return answer;
 }
-
 
 /***
     Args:
@@ -92,13 +83,13 @@ string chooseWordFromList(const vector<string>& wordList, int index)
         secretWord (string): answerWord in hidden form (form of ---)
 ***/
 string generateHiddenCharacters(string answerWord){
-    string secretWord = "";
-    for (int i = 0; i < answerWord.length(); i++) {
-        secretWord += "-";
+    // TODO: Based on answerWord's length, generate hidden characters in form of "---"
+    string secretWord;
+    for( int i=0 ; i<answerWord.size() ; i++){
+        secretWord+="-";
     }
     return secretWord;
 }
-
 
 char getInputCharacter() {
     char ch;
@@ -108,67 +99,52 @@ char getInputCharacter() {
 
 /***
     Args:
-        secretWord (string): từ bí mật ở dạng ẩn
-        ch (char): một nhân vật
-        word (string): từ câu trả lời
+        secretWord (string): secret word in hidden form
+        ch (char): a charater
+        word (string): the answer word
     Returns:
         void
 ***/
-void updateSecretWord(string& secretWord, const char ch, const string& word) {  
-    for (size_t i = 0; i < word.length(); ++i) { 
-        if (word[i] == ch) { 
-        secretWord[i] = ch; 
-        } 
+void updateSecretWord(string& secretWord, const char ch, const string& word)
+{
+    // TODO: Update the secret word if the character ch is in the answer word.
+    for( int i=0 ; i<word.size() ; i++){
+        if( word[i] == ch ) secretWord[i] = ch;
     }
 }
-// } 
-
-// void updateSecretWord(string& secretWord, const char ch, const string& word)
-// {
-//     for (int i = 0; i < word.size(); i++)
-//     {
-//         if (word[i]==ch)
-//         {
-//             Word[i]=ch;
-//         }
-        
-    // }
-    
-    // TODO:Cập nhật từ bí mật nếu ký tự ch trong từ trả lời.
-     //Update the secret word if the character ch is in the answer word.
-
 
 /***
     Args:
-        ch (char): một nhân vật
-        chars (string): Một mảng các ký tự
+        ch (char): a character
+        chars (string): an array of characters
     Returns:
         void
 ***/
 void updateEnteredChars(const char ch, string& chars){
-    // TODO: nối các ký tự ch là cuối của ký tự
-    chars+=ch;
+    // TODO: append the character ch is in end of the text chars
+    chars += ch;
+    chars += ' ';
 }
 
 /***
     Args:
-        incorrectGuess (int): một số lưu trữ số lượng phỏng đoán sai của người chơi
+        incorrectGuess (int): a number that store the number of player's wrong guess
     Returns:
         void
 ***/
 void updateIncorrectGuess(int& incorrectGuess){
-    // TODO: Tăng giá trị không chính xác lên 1
+    // TODO: increase the value of incorrectGuess by 1
     incorrectGuess++;
 }
 
 /***
     Args:
-        ch (char): một nhân vật mà người chơi nhập vào bảng điều khiển
-        word (string): Trả lời từ mà chơi cần phải đoán
-        secretWord (string): Trả lời từ ở dạng ẩn
-        correctChars (string): một chuỗi lưu trữ các đầu vào chính xác của người chơi
-        incorrectGuess (int): một số lưu trữ số lượng phỏng đoán sai của người chơi
-        incorrectChars (string): một chuỗi lưu trữ các đầu vào không chính xác của người chơi
+        ch (char): a character that player enter to console
+        word (string): answer word that player needs to guess
+        secretWord (string): answer word in hidden form
+        correctChars (string): a string that stores correct inputs of player
+        incorrectGuess (int): a number that stores the number of player's wrong guess
+        incorrectChars (string): a string that stores incorrect inputs of player
     Returns:
         void
 ***/
@@ -177,23 +153,6 @@ void processData(const char ch, const string& word,
                 string& correctChars, 
                 int& incorrectGuess, string& incorrectChars)
 {
-    for (int i = 0; i < word.size(); i++)
-    {
-        //if (word[i]==ch)
-        if(isCharInWord(ch,word))
-        {
-            updateSecretWord(secretWord,ch,word);
-            updateEnteredChars(ch,correctChars);
-        }
-        else
-        {
-            updateIncorrectGuess(incorrectGuess);
-            updateEnteredChars(ch,incorrectChars);
-        }
-        
-    }
-        
-    }        
     /*** TODO
         If ch in word:
             update secretWord: call updateSecretWord() function
@@ -202,5 +161,16 @@ void processData(const char ch, const string& word,
             update incorrectGuess: call updateIncorrectGuess() function
             update incorrectChars: call updateEnteredChars() function
     ***/
-
-
+   bool check = false;
+    for( int i=0 ; i<word.size() ; i++){
+        if( word[i] == ch ){
+            updateSecretWord( secretWord, ch, word );
+            updateEnteredChars( ch, correctChars );
+            check = true;
+        }
+    }
+    if( !check ){
+        updateIncorrectGuess( incorrectGuess );
+        updateEnteredChars( ch, incorrectChars);
+    }
+}
